@@ -112,31 +112,34 @@ class Lightpop_Public {
 		register_setting( 'Location' , 'option_name'  );
 		register_setting( 'body' , 'option_name'  );
 		
+		//all options 
 		$Header = get_option( 'header_Text');
 			$body = get_option( 'pop_Text');
 			$bgcolor = get_option( 'bgColor');
 			$roles = get_option( 'Roles' );
 			$location = get_option( 'Location' );
-	echo $roles;
+
 	
 
-		
-				global $user_login, $current_user;
+		//finding th current user logged in
+				global $current_user;
+			    get_currentuserinfo();
+				$user_info = get_userdata($current_user->ID);
 
+				//global post will give us the page id and title using $post->
+				global $post;
+				// echo $post->post_title;
+				
+				
+// echo "<pre>";
+// print_r($post->post_title);
+// echo "</pre>";
 
-    get_currentuserinfo();
-	$user_info = get_userdata($current_user->ID);
-	
-echo "<pre>";
-print_r($roles);
-echo "</pre>";
-
-
-	if (in_array($roles, $user_info->roles)) {
-        // content
+//if role from options_panel is equal to current user and current page is also which we wanted
+	if (in_array($roles, $user_info->roles) && $location == $post->post_title ) {
+//Modal Box
     
 ?>
-
 <div id="modal" >
     <div class="modalconent" style="background-color: <?php echo $bgcolor;?>">
         <h3><?php echo $Header; ?></h3>
@@ -146,16 +149,11 @@ echo "</pre>";
     </div>
 </div>
 
-
-
-
 <?php
 			}
 			
 	?>
-	
 
-	
 	<?php  
 	
 	

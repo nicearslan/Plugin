@@ -143,6 +143,9 @@ class Lightpop_Admin {
 			add_settings_section( 'plugin_settings', 'plugin_settings' , '' , 'plugin_settings' );
 			add_settings_field( 'Roles', 'Roles ', 'settings', 'plugin_settings', 'plugin_settings' );
 			
+			// add_settings_section( 'Count', 'Count' , '' , 'Count' );
+			// add_settings_field( 'Count', 'Popup Countdown ', 'Count', 'Count', 'Count' );
+			
 			
 			add_settings_section( 'Location', 'Location' , '' , 'Location' );
 			add_settings_field( 'location', 'Show on this Page ', 'Pages', 'Location', 'Location' ); //Where to be Shown Page
@@ -259,7 +262,6 @@ echo get_option('location');
 			}
 		
 
-
 		?>
 		<form action="options.php" method="post">
 		<?php
@@ -276,6 +278,10 @@ echo get_option('location');
 echo "<br><br>";
 		settings_fields('plugin_settings');
 		do_settings_sections('plugin_settings');
+		echo "<br>";
+		// settings_fields('Count');
+		// do_settings_sections('Count');
+		
 		echo "<br><br>";
 		settings_fields('Location');
 		do_settings_sections('Location');
@@ -308,7 +314,7 @@ function process_form(){
 		update_option( 'bgColor' , sanitize_text_field($_POST['bgColor']) );
 		update_option( 'Roles' , sanitize_text_field($_POST['role']) );
 		update_option( 'Location' , sanitize_text_field($_POST['location']) );
-	 
+	
 	}
 
 }
